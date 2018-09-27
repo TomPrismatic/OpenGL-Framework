@@ -1,6 +1,2 @@
-﻿  Main.cpp
-d:\users\thomas.she7816\documents\github\3d-graphics\shader triangles\shader triangles\main.cpp(57): warning C4838: conversion from 'double' to 'GLfloat' requires a narrowing conversion
-d:\users\thomas.she7816\documents\github\3d-graphics\shader triangles\shader triangles\main.cpp(57): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-d:\users\thomas.she7816\documents\github\3d-graphics\shader triangles\shader triangles\main.cpp(187): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-d:\users\thomas.she7816\documents\github\3d-graphics\shader triangles\shader triangles\main.cpp(217): error C3867: 'Input::KeyboardDown': non-standard syntax; use '&' to create a pointer to member
-d:\users\thomas.she7816\documents\github\3d-graphics\shader triangles\shader triangles\main.cpp(218): error C3867: 'Input::KeyboardUp': non-standard syntax; use '&' to create a pointer to member
+﻿  Player.cpp
+  Shader Triangles.vcxproj -> D:\Users\Thomas.She7816\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

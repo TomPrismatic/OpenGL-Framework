@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\glm;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\glm;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\fmod;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\soil;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\glm;$(ProjectDir)\Dependencies\fmod;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)\Dependencies\glew;$(ProjectDir)\Dependencies\freeglut;$(ProjectDir)\Dependencies\soil;$(IncludePath)</IncludePath>
@@ -85,7 +85,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>opengl32.lib;freeglut.lib;glew32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;freeglut.lib;glew32.lib;SOIL.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,14 +127,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mesh2D.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Mesh2D.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.fs" />

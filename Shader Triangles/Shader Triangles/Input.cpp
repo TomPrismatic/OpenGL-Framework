@@ -1,15 +1,24 @@
 #include "Input.h"
 
+Input * Input::instance = NULL;
 
+Input * Input::GetInstance()
+{
+	if (instance == NULL)
+	{
+		instance = new Input();
+	}
+	return instance;
+}
 
 void Input::KeyboardDown(unsigned char key, int x, int y)
 {
-	KeyState[key] = DOWN;
+	GetInstance()->KeyState[key] = DOWN;
 }
 
 void Input::KeyboardUp(unsigned char key, int x, int y)
 {
-	KeyState[key] = UP;
+	GetInstance()->KeyState[key] = UP;
 }
 
 void Input::KeyboardFirstDown(unsigned char key, int x, int y)
@@ -22,29 +31,10 @@ void Input::KeyboardFirstUp(unsigned char key, int x, int y)
 	KeyState[key] = UP_FIRST;
 }
 
-void Input::ProcessInput(glm::vec3 objPosition)
+unsigned char Input::GetKeyDown(unsigned char key)
 {
-	if (KeyState['w'] == DOWN)
-	{
-		objPosition.y += 1.0f;
-	}
-
-	if (KeyState['s'] == DOWN)
-	{
-		objPosition.y -= 1.0f;
-	}
-
-	if (KeyState['d'] == DOWN)
-	{
-		objPosition.y += 1.0f;
-	}
-
-	if (KeyState['a'] == DOWN)
-	{
-		objPosition.y -= 1.0f;
-	}
+	return GetInstance()->KeyState[key];
 }
-
 
 Input::Input()
 {
