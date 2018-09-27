@@ -9,13 +9,15 @@ uniform float currentTime;
 out vec3 fragColor;
 out vec2 fragTexCoord;
 
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 proj;
+uniform mat4 pvm;
+uniform float textureWidth;
+uniform float textureHeight;
+uniform float textureX;
+uniform float textureY;
 
 void main() 
 {
-	gl_Position = proj * view * model * vec4(position, 1.0);
+	gl_Position = pvm * vec4(position, 1.0);
 	fragColor = color;
 	fragTexCoord = texCoord;
 }

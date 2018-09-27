@@ -5,46 +5,33 @@
 #include "Camera.h"
 #include "Input.h"
 #include "Player.h"
+#include "GameObject.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
+#include "Clock.h"
 #include "gtc/type_ptr.hpp"
 #include <iostream>
 
+//Clock
 
-std::string raymanImage = "Dependencies/Rayman.jpg";
-std::string faceImage = "Dependencies/AwesomeFace.png";
 
 //Global Variables
 GLuint program;
 
-GLuint VBO, VBOQuad;
-GLuint VAO, VAOQuad;
-GLuint EBO, EBOQuad;
-
-GLuint texture;
-GLuint texture2;
-
-GLfloat currentTime;
-
-glm::vec3 objPosition = glm::vec3(0.5f, 0.5f, 0.0f);
-glm::vec3 rotationAxisZ = glm::vec3(0.0f, 0.0f, 1.0f);
-glm::vec3 objScale = glm::vec3(0.5f, 0.5f, 0.5f);
-
-glm::mat4 translationMatrix;
-glm::mat4 rotationZ;
-glm::mat4 scaleMatrix;
-glm::mat4 model;
-
 //Camera
-Camera camera;
-glm::vec3 camPos = glm::vec3(0.0f, 0.0f, 3.0f);
-glm::vec3 camLookDir = glm::vec3(0.0f, 0.0f, -1.0f);
-glm::vec3 camUpDir = glm::vec3(0.0f, 1.0f, 0.0f);
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 800;
+Camera * camera = new Camera();
 
 //Player
-Player player;
+Player * player = new Player();
+
+//GameObject
+GameObject * gameObject = new GameObject();
+
+
+void updatePVM(GameObject * gameObject)
+{
+	player->calculatePVMMatrix(camera->GetPV());
+}
 
 
 
@@ -52,35 +39,11 @@ void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(1.0, 0.0, 0.0, 1.0); //clear red
-
-	glUseProgram(program);
-	glBindVertexArray(VAO); // Bind VAO 
-	glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
-	//glBindVertexArray(0); // Unbind VAO
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i(glGetUniformLocation(program, "tex"), 0);
-
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texture2);
-	glUniform1i(glGetUniformLocation(program, "tex2"), 1);
-
-	glBindVertexArray(VAOQuad); // Bind VAO
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0); // Unbind VAO
-
-	GLint currentTimeLoc = glGetUniformLocation(program, "currentTime");
-	glUniform1f(currentTimeLoc, currentTime);
 	
-	GLuint modelLoc = glGetUniformLocation(program, "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+	player->render(program);
 
-	//Camera View
-	camera.generateView(camPos, camLookDir, camUpDir, program);
-
-	//Camera Proj
-	camera.generateProjPerspective(SCR_WIDTH, SCR_HEIGHT, program);
+	GLuint pvmLoc = glGetUniformLocation(program, "pvm");
+	glUniformMatrix4fv(pvmLoc, 1, GL_FALSE, glm::value_ptr(player->getPVMMatrix()));
 
 	glUseProgram(0); //Unbind Program
 	
@@ -92,24 +55,17 @@ void init()
 	ShaderLoader shaderLoader; 
 	program = shaderLoader.CreateProgram("VertexShader.vs", "FragmentShader.fs");
 
+	player->initialise();
+	camera->Initialise();
 }
 
 void Update()
 {
-	player.ProcessInput(objPosition);
-	currentTime = glutGet(GLUT_ELAPSED_TIME);  // Get current time. 
-	currentTime = currentTime / 1000;  // Convert millisecond to seconds
+	camera->Update(1.0f);
 
-	//Object placement using a matrix
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(), objPosition);
-	//Object Rotation using a Matrix
-	float rotationAngle = 180;
-	rotationZ = glm::rotate(glm::mat4(), glm::radians(rotationAngle), rotationAxisZ);
-	//Object scaling using a scaling Matrix
-	scaleMatrix = glm::scale(glm::mat4(), objScale);
-	//Combining all three into a model matrix
-	model = translationMatrix * rotationZ * scaleMatrix;
-	
+	player->update(1.0f, program);
+	updatePVM(player);
+
 	glutPostRedisplay();
 }
 

@@ -8,20 +8,38 @@
 #include "Mesh2D.h"
 #include "Texture.h"
 #include "Transform.h"
+#include "Camera.h"
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
+#include <iostream>
 
 class GameObject
 {
 	Mesh2D* mesh2D = nullptr;
-	Texture* texture = nullptr;
+	Texture* textureObject = nullptr;
+	glm::mat4 modelMatrix;
+	glm::mat4 pvmMatrix;
 
 public:
 	GameObject();
-	~GameObject();
+	virtual ~GameObject();
 
 	virtual void initialise();
 	virtual void render(GLuint program);
 	virtual void update(float deltaTime);
+	
+	void calculateModelMatrix();
+	void calculatePVMMatrix(glm::mat4 PV);
 
+	glm::mat4 getModelMatrix();
+	glm::mat4 getPVMMatrix();
+
+	Transform transform;
+
+protected:
+
+	float objectDiameter;
 
 };
 

@@ -1,18 +1,35 @@
 #pragma once
+#include "Dependencies\soil\SOIL.h"
+#include "Dependencies\glew\glew.h" 
+#include "Dependencies\freeglut\freeglut.h" 
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
-#include "Input.h"
+#include "Mesh2D.h"
+#include "Texture.h"
 #include "Transform.h"
-class Player
+#include "Camera.h"
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
+#include "GameObject.h"
+#include <iostream>
+
+class Player:public GameObject
 {
+	Texture texture;
+
 public:
-
-	void ProcessInput(glm::vec3 objPosition);
-
-	Transform transform;
-
 	Player();
-	~Player();
+	virtual ~Player();
+
+	void ProcessInput();
+
+	virtual void update(float deltaTime, GLuint program);
+
+	virtual void initialise();
+
+	void updateSprite();
+
 };
 
