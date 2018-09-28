@@ -25,7 +25,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	virtual void initialise();
+	virtual void initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex, std::string);
 	virtual void render(GLuint program);
 	virtual void update(float deltaTime);
 	

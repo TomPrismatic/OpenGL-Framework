@@ -8,8 +8,9 @@
 #include "GameObject.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
-#include "Clock.h"
 #include "gtc/type_ptr.hpp"
+#include "Clock.h"
+#include "Background.h"
 #include <iostream>
 
 //Clock
@@ -24,8 +25,13 @@ Camera * camera = new Camera();
 //Player
 Player * player = new Player();
 
+//Background
+Background * background = new Background();
+
 //GameObject
 GameObject * gameObject = new GameObject();
+
+int deltaTime = 0;
 
 
 void updatePVM(GameObject * gameObject)
@@ -39,11 +45,10 @@ void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(1.0, 0.0, 0.0, 1.0); //clear red
-	
-	player->render(program);
 
-	GLuint pvmLoc = glGetUniformLocation(program, "pvm");
-	glUniformMatrix4fv(pvmLoc, 1, GL_FALSE, glm::value_ptr(player->getPVMMatrix()));
+	background->render(program);
+	player->render(program);
+	
 
 	glUseProgram(0); //Unbind Program
 	
@@ -56,16 +61,18 @@ void init()
 	program = shaderLoader.CreateProgram("VertexShader.vs", "FragmentShader.fs");
 
 	player->initialise();
+	background->initialise();
 	camera->Initialise();
 }
 
 void Update()
 {
+	deltaTime++;
 	camera->Update(1.0f);
 
-	player->update(1.0f, program);
+	player->update(deltaTime, program);
+	background->update(1.0f);
 	updatePVM(player);
-
 	glutPostRedisplay();
 }
 
@@ -78,6 +85,8 @@ int main(int argc, char **argv) {
 									 // register callbacks
 
 	glewInit();
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	init();
 
 	glutDisplayFunc(render);

@@ -10,16 +10,11 @@ public:
 
 	void initialise();
 	void setStringPath(std::string string);
+	std::string getStringPath();
 	GLuint GetTexture();
-	void setSpriteComponents(int spriteWidth, int spriteHeight, int	texWidth, int texHeight);
-	void spriteTexCoords(int frameIndex, GLuint program);
 
 private:
-	std::string fileName = "";
+	std::string fileName;
 	GLuint texture = NULL;
-
-	int spriteWidth, spriteHeight;
-	int texWidth, texHeight;
-	int tex;
 };
 

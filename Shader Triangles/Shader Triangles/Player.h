@@ -31,5 +31,7 @@ public:
 
 	void updateSprite();
 
+private:
+	int frameIndex = 1;
 };
 

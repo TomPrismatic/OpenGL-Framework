@@ -1,6 +1,4 @@
-﻿  GameObject.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Player.cpp
-  Main.cpp
-  Shader Triangles.vcxproj -> D:\Users\Thomas.She7816\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe
+﻿  Player.cpp
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Shader Triangles.vcxproj -> D:\Users\thomas.she7816\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

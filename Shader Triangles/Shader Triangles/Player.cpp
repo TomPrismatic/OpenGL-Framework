@@ -27,32 +27,36 @@ void Player::ProcessInput()
 	if (Input::GetKeyDown('d') == DOWN)
 	{
 		transform.objPosition.x += 1.0f;
+		transform.setRotationAngleZ(90);
+		transform.setRotationAngleY(180);
 	}
 
 	if (Input::GetKeyDown('a') == DOWN)
 	{
 		transform.objPosition.x -= 1.0f;
+		transform.setRotationAngleZ(270);
+		transform.setRotationAngleY(0);
 	}
 }
 
 void Player::update(float deltaTime, GLuint program)
 {
 	GameObject::update(deltaTime);
-	int frameIndex = 1;
-	texture.setSpriteComponents(90, 88, 988, 610);
-	texture.spriteTexCoords(frameIndex, program);
+	frameIndex = deltaTime;
 	ProcessInput();
 }
 
 void Player::initialise()
 {
+	objectDiameter *= 10;
+	transform.setRotationAngleZ(270);
 	updateSprite();
-	GameObject::initialise();	
+	GameObject::initialise(93.75, 89, 750, 356, frameIndex, texture.getStringPath());
 
 }
 
 void Player::updateSprite()
 {
-	texture.setStringPath("Dependencies/DwarfSpriteSheet.png");
+	texture.setStringPath("Dependencies/DwarfSpriteSheet3.png");
 }
 

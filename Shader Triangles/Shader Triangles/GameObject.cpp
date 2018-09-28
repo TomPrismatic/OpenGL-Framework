@@ -14,13 +14,14 @@ GameObject::~GameObject()
 {
 }
 
-void GameObject::initialise()
+void GameObject::initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex, std::string stringPath)
 {
-	mesh2D->initialise();
-	textureObject->setStringPath("Dependencies/DwarfSpriteSheet.png");
+	mesh2D->initialise(spriteWidth, spriteHeight, texWidth, texHeight, frameIndex);
+	textureObject->setStringPath(stringPath);
 	textureObject->initialise();
 
 	transform.objScale *= objectDiameter;
+	
 
 
 }
@@ -31,11 +32,14 @@ void GameObject::render(GLuint program)
 	GLuint texture = textureObject->GetTexture();
 
 	glUseProgram(program);
-
+	
 	//Texture
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i(glGetUniformLocation(program, "tex"), 0);
+
+	GLuint pvmLoc = glGetUniformLocation(program, "pvm");
+	glUniformMatrix4fv(pvmLoc, 1, GL_FALSE, glm::value_ptr(getPVMMatrix()));
 
 	glBindVertexArray(VAO); // Bind VAO 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -45,6 +49,7 @@ void GameObject::render(GLuint program)
 void GameObject::update(float deltaTime)
 {
 	calculateModelMatrix();
+	mesh2D->update(deltaTime);
 }
 
 void GameObject::calculateModelMatrix()
@@ -53,7 +58,7 @@ void GameObject::calculateModelMatrix()
 	//Object placement using a matrix
 	glm::mat4 translationMatrix = glm::translate(glm::mat4(), transform.objPosition);
 	//Object Rotation using a Matrix
-	glm::mat4 rotationZ = glm::rotate(glm::mat4(), glm::radians(0.0f), transform.rotationAxisZ);
+	glm::mat4 rotationZ = transform.getRotationMatrix();
 	//Object scaling using a scaling Matrix
 	glm::mat4 scaleMatrix = glm::scale(glm::mat4(), transform.objScale);
 	//Combining all three into a model matrix
