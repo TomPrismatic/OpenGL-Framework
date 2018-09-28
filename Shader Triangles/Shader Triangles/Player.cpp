@@ -29,6 +29,7 @@ void Player::ProcessInput()
 		transform.objPosition.x += 1.0f;
 		transform.setRotationAngleZ(90);
 		transform.setRotationAngleY(180);
+		animationIndex = 1;
 	}
 
 	if (Input::GetKeyDown('a') == DOWN)
@@ -36,19 +37,44 @@ void Player::ProcessInput()
 		transform.objPosition.x -= 1.0f;
 		transform.setRotationAngleZ(270);
 		transform.setRotationAngleY(0);
+		animationIndex = 1;
+	}
+
+	if (Input::GetKeyDown('h') == DOWN)
+	{
+		animationIndex = 2;
+	}
+
+	if (Input::GetKeyDown('j') == DOWN)
+	{
+		animationIndex = 3;
+	}
+
+	if (Input::GetKeyDown('k') == DOWN)
+	{
+		animationIndex = 4;
+	}
+
+	if (   Input::GetKeyDown('w') == UP && Input::GetKeyDown('a') == UP 
+		&& Input::GetKeyDown('s') == UP && Input::GetKeyDown('d') == UP
+		&& Input::GetKeyDown('h') == UP && Input::GetKeyDown('j') == UP 
+		&& Input::GetKeyDown('k') == UP)
+	{
+		animationIndex = 0;
 	}
 }
 
 void Player::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime);
+	GameObject::update(deltaTime, true, animationIndex);
+	
 	frameIndex = deltaTime;
 	ProcessInput();
 }
 
 void Player::initialise()
 {
-	objectDiameter *= 10;
+	objectDiameter *= 4;
 	transform.setRotationAngleZ(270);
 	updateSprite();
 	GameObject::initialise(93.75, 89, 750, 356, frameIndex, texture.getStringPath());

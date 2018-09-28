@@ -13,16 +13,15 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 #include "GameObject.h"
-#include "Background.h"
 #include <iostream>
 
-class Background : public GameObject
+class Background:public GameObject
 {
 	Texture texture;
 
 public:
 	Background();
-	~Background();
+	virtual ~Background();
 
 	virtual void initialise();
 

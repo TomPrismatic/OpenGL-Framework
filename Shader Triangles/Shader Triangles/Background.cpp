@@ -14,19 +14,19 @@ Background::~Background()
 
 void Background::initialise()
 {
-	objectDiameter *= 10;
-	transform.setRotationAngleZ(0);
+	objectDiameter *= 17;
+	//transform.setRotationAngleZ(180);
 	updateSprite();
-	GameObject::initialise(480, 854, 480, 854, 1, texture.getStringPath());
+	GameObject::initialise(576, 336, 576, 336, 1, texture.getStringPath());
 }
 
 void Background::update(float deltaTime)
 {
-	GameObject::update(deltaTime);
+	GameObject::update(deltaTime, false, 0);
 	int frameIndex = 1;
 }
 
 void Background::updateSprite()
 {
-	texture.setStringPath("Dependencies/BackgroundSprite.jpg");
+	texture.setStringPath("Dependencies/Dungeon.png");
 }

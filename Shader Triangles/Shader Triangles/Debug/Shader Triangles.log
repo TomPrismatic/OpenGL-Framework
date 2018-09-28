@@ -1,4 +1,6 @@
-﻿  Player.cpp
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(45): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  Mesh2D.cpp
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(70): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(77): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(84): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Shader Triangles.vcxproj -> D:\Users\thomas.she7816\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

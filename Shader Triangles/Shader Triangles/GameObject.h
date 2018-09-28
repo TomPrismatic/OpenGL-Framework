@@ -27,7 +27,7 @@ public:
 
 	virtual void initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex, std::string);
 	virtual void render(GLuint program);
-	virtual void update(float deltaTime);
+	virtual void update(float deltaTime, bool isSpriteSheet, int animationIndex);
 	
 	void calculateModelMatrix();
 	void calculatePVMMatrix(glm::mat4 PV);
@@ -40,6 +40,6 @@ public:
 protected:
 
 	float objectDiameter;
-
+	int animationIndex = 0;
 };
 

@@ -36,7 +36,8 @@ int deltaTime = 0;
 
 void updatePVM(GameObject * gameObject)
 {
-	player->calculatePVMMatrix(camera->GetPV());
+	player->calculatePVMMatrix(camera->GetPV()); 
+	background->calculatePVMMatrix(camera->GetPV());
 }
 
 

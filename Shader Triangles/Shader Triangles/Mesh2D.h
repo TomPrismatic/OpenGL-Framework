@@ -9,7 +9,7 @@ public:
 
 	void initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex);
 
-	void update(int frameIndex);
+	void update(int frameIndex, int animationIndex);
 
 	const GLuint getVAO();
 

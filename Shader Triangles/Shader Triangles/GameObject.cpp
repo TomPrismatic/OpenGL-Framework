@@ -46,10 +46,12 @@ void GameObject::render(GLuint program)
 	
 }
 
-void GameObject::update(float deltaTime)
+void GameObject::update(float deltaTime, bool isSpriteSheet, int animationIndex)
 {
 	calculateModelMatrix();
-	mesh2D->update(deltaTime);
+	if (isSpriteSheet){
+		mesh2D->update(deltaTime, animationIndex);
+	}		
 }
 
 void GameObject::calculateModelMatrix()
