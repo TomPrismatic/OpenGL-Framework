@@ -12,6 +12,7 @@
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
+#include "Sound.h"
 #include <iostream>
 
 class GameObject

@@ -1,6 +1,4 @@
-﻿  Mesh2D.cpp
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(70): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(77): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-d:\users\thomas.she7816\documents\github\opengl-framework\shader triangles\shader triangles\mesh2d.cpp(84): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Shader Triangles.vcxproj -> D:\Users\thomas.she7816\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe
+﻿  Rat.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\rat.cpp(22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Shader Triangles.vcxproj -> C:\Users\OEM\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

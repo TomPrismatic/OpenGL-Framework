@@ -18,6 +18,7 @@
 class Player:public GameObject
 {
 	Texture texture;
+	Sound sound;
 
 public:
 	Player();
@@ -30,6 +31,8 @@ public:
 	virtual void initialise();
 
 	void updateSprite();
+
+	void updateSounds();
 
 private:
 	int frameIndex = 1;
