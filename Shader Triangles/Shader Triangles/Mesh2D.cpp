@@ -86,6 +86,69 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 3 * textureHeight;
 		}
+		if (animationIndex == 5)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 5 * textureHeight;
+		}
+		if (animationIndex == 6)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 6 * textureHeight;
+		}
+		if (animationIndex == 7)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 7 * textureHeight;
+		}
+		if (animationIndex == 8)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 8 * textureHeight;
+		}
+		if (animationIndex == 9)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 9 * textureHeight;
+		}
+		if (animationIndex == 10)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 10 * textureHeight;
+		}
+		if (animationIndex == 11)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 11 * textureHeight;
+		}
+		if (animationIndex == 12)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 12 * textureHeight;
+		}
+		if (animationIndex == 13)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 13 * textureHeight;
+		}
 		
 
 		//if (textureX > 300)

@@ -8,6 +8,7 @@
 #include "BatKnight.h"
 #include "Zombie.h"
 #include "Rat.h"
+#include "IntroScene.h"
 #include "GameObject.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
@@ -24,6 +25,9 @@ GLuint program;
 
 //Camera
 Camera * camera = new Camera();
+
+//IntroScene
+IntroScene * introScene = new IntroScene();
 
 //Player
 Player * player = new Player();
@@ -52,6 +56,7 @@ void updatePVM(GameObject * gameObject)
 	batKnight->calculatePVMMatrix(camera->GetPV());
 	zombie->calculatePVMMatrix(camera->GetPV());
 	rat->calculatePVMMatrix(camera->GetPV());
+	introScene->calculatePVMMatrix(camera->GetPV());
 	background->calculatePVMMatrix(camera->GetPV());
 }
 
@@ -67,6 +72,7 @@ void render()
 	batKnight->render(program);
 	zombie->render(program);
 	rat->render(program);
+	introScene->render(program);
 
 	glUseProgram(0); //Unbind Program
 	
@@ -82,6 +88,7 @@ void init()
 	batKnight->initialise();
 	zombie->initialise();
 	rat->initialise();
+	introScene->initialise();
 
 	background->initialise();
 	camera->Initialise();
@@ -96,6 +103,8 @@ void Update()
 	batKnight->update(deltaTime, program);
 	zombie->update(deltaTime, program);
 	rat->update(deltaTime, program);
+	introScene->update(deltaTime, program);
+
 	background->update(1.0f);
 	updatePVM(player);
 	glutPostRedisplay();
