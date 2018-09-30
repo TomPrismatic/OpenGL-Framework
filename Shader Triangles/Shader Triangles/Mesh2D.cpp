@@ -171,6 +171,24 @@ void Mesh2D::update(int frameIndex, int animationIndex, bool isInAction)
 			textureY = 13 * textureHeight;
 			setIsAnimationComplete(false);
 		}
+		if (animationIndex == 14)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 14 * textureHeight;
+			setIsAnimationComplete(false);
+		}
+
+		if (animationIndex == 15)
+		{
+			int spriteIndex = frameIndex * 0.15;
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			textureX = (spriteIndex % numPerRow) * textureWidth;
+			textureY = 15 * textureHeight;
+			setIsAnimationComplete(false);
+		}
+
 		
 
 		//if (textureX > 300)

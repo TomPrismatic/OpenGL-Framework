@@ -26,6 +26,7 @@ void GameManager::render()
 	{
 	case menuScreen:
 	{
+		GetInstance()->menuImage->render(GetInstance()->program);
 		GetInstance()->gameMenu->render(GetInstance()->program);
 		break;
 	}
@@ -44,7 +45,7 @@ void GameManager::render()
 	}
 	case zombieCutscene:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
+		GetInstance()->zombieScene->render(GetInstance()->program);
 		break;
 	}
 	case ratRoom:
@@ -57,7 +58,7 @@ void GameManager::render()
 	}
 	case ratCutscene:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
+		GetInstance()->ratScene->render(GetInstance()->program);
 		break;
 	}
 	case batRoom:
@@ -70,7 +71,7 @@ void GameManager::render()
 	}
 	case batCutscene:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
+		GetInstance()->batScene->render(GetInstance()->program);
 		break;
 	}
 	case multiRoom:
@@ -85,17 +86,15 @@ void GameManager::render()
 	}
 	case finalCutScene:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
+		GetInstance()->finalScene->render(GetInstance()->program);
 		break;
 	}
 	case pauseScreen:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
 		break;
 	}
 	case gameOverScreen:
 	{
-		GetInstance()->introScene->render(GetInstance()->program);
 		break;
 	}
 	default:
@@ -124,6 +123,11 @@ void GameManager::init()
 	rat->initialise();
 	vectorOfGameObjects.push_back(rat);
 	introScene->initialise();
+	ratScene->initialise();
+	batScene->initialise();
+	zombieScene->initialise();
+	finalScene->initialise();
+	menuImage->initialise();
 	text->initialise();
 
 	background->initialise();
@@ -141,6 +145,8 @@ void GameManager::Update()
 	{
 	case menuScreen:
 	{
+		GetInstance()->menuImage->update(GetInstance()->deltaTime);
+		GetInstance()->updatePVM(GetInstance()->menuImage);
 		GetInstance()->gameMenu->update(GetInstance()->deltaTime);
 		if (GetInstance()->gameMenu->getFirstClicked() == true)
 		{
@@ -180,7 +186,12 @@ void GameManager::Update()
 	}
 	case zombieCutscene:
 	{	
-		GetInstance()->currentGameState = ratRoom;
+		GetInstance()->zombieScene->update(GetInstance()->deltaTime, GetInstance()->program);
+		GetInstance()->updatePVM(GetInstance()->zombieScene);
+		if (GetInstance()->zombieScene->getIsVisible() == false)
+		{
+			GetInstance()->currentGameState = ratRoom;
+		}
 		break;
 	}
 	case ratRoom:
@@ -200,7 +211,12 @@ void GameManager::Update()
 	}
 	case ratCutscene:
 	{
-		GetInstance()->currentGameState = batRoom;
+		GetInstance()->ratScene->update(GetInstance()->deltaTime, GetInstance()->program);
+		GetInstance()->updatePVM(GetInstance()->ratScene);
+		if (GetInstance()->ratScene->getIsVisible() == false)
+		{
+			GetInstance()->currentGameState = batRoom;
+		}
 		break;
 	}
 	case batRoom:
@@ -219,7 +235,12 @@ void GameManager::Update()
 	}
 	case batCutscene:
 	{
-		GetInstance()->currentGameState = multiRoom;
+		GetInstance()->batScene->update(GetInstance()->deltaTime, GetInstance()->program);
+		GetInstance()->updatePVM(GetInstance()->batScene);
+		if (GetInstance()->batScene->getIsVisible() == false)
+		{
+			GetInstance()->currentGameState = multiRoom;
+		}
 		break;
 	}
 	case multiRoom:
@@ -249,7 +270,12 @@ void GameManager::Update()
 	}
 	case finalCutScene:
 	{
-		glutLeaveMainLoop();
+		GetInstance()->finalScene->update(GetInstance()->deltaTime, GetInstance()->program);
+		GetInstance()->updatePVM(GetInstance()->finalScene);
+		if (GetInstance()->finalScene->getIsVisible() == false)
+		{
+			glutLeaveMainLoop();
+		}
 		break;
 	}
 	case pauseScreen:
@@ -297,7 +323,7 @@ void GameManager::playGame(int argc, char **argv)
 GameManager::GameManager()
 {
 	//Game Menu
-	gameMenu = new GameMenu("Start Quest", "Bitch it");
+	gameMenu = new GameMenu("Start Quest (Press S)", "Be an Elf (Press Q)");
 	//Camera
 	camera = new Camera();
 	//IntroScene
@@ -314,9 +340,18 @@ GameManager::GameManager()
 	text = new TextLabel("Enimies Remaining:", "Dependencies/Fonts/SnackerComic.ttf", glm::vec2(-390.0f, 350.0f));
 	//Background
 	background = new Background();
+	//MenuImage
+	menuImage = new MenuImage();
 	//GameObject
 	gameObject = new GameObject();
 	float deltaTime = 0.0f;
+
+	//Scenes
+	introScene = new IntroScene();
+	batScene = new BatScene();
+	ratScene = new RatScene();
+	zombieScene = new ZombieScene();
+	finalScene = new FinalScene();
 
 }
 

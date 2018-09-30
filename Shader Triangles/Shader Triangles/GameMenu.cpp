@@ -16,8 +16,8 @@ GameMenu::GameMenu(std::string startString, std::string exitString)
 	firstClicked = false;
 	secondClicked = false;
 
-	startButton = new TextLabel(startString, font, glm::vec2(-40.0f, 100.0f));
-	quitButton = new TextLabel(exitString, font, glm::vec2(-20.0f, -100.0f));
+	startButton = new TextLabel(startString, font, glm::vec2(-150.0f, 100.0f));
+	quitButton = new TextLabel(exitString, font, glm::vec2(-125.0f, -100.0f));
 }
 
 GameMenu::~GameMenu()

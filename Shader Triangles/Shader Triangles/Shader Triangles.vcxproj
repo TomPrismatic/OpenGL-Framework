@@ -128,46 +128,56 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BatKnight.cpp" />
+    <ClCompile Include="BatScene.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="FinalScene.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="IntroScene.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuImage.cpp" />
     <ClCompile Include="Mesh2D.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RadiusCollision.cpp" />
     <ClCompile Include="Rat.cpp" />
+    <ClCompile Include="RatScene.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TextLabel.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Zombie.cpp" />
+    <ClCompile Include="ZombieScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BatKnight.h" />
+    <ClInclude Include="BatScene.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Clock.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="FinalScene.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="IntroScene.h" />
+    <ClInclude Include="MenuImage.h" />
     <ClInclude Include="Mesh2D.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RadiusCollision.h" />
     <ClInclude Include="Rat.h" />
+    <ClInclude Include="RatScene.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="TextLabel.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Zombie.h" />
+    <ClInclude Include="ZombieScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FragmentShader.fs" />

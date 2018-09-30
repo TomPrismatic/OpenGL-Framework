@@ -9,7 +9,6 @@
 #include "BatKnight.h"
 #include "Zombie.h"
 #include "Rat.h"
-#include "IntroScene.h"
 #include "GameObject.h"
 #include "GameMenu.h"
 #include "glm.hpp"
@@ -19,6 +18,12 @@
 #include "TextLabel.h"
 #include <vector>
 #include "Background.h"
+#include "IntroScene.h"
+#include "RatScene.h"
+#include "BatScene.h"
+#include "ZombieScene.h"
+#include "FinalScene.h"
+#include "MenuImage.h"
 #include <iostream>
 
 enum gameState {
@@ -65,8 +70,6 @@ private:
 	GLuint program;
 	//Camera
 	Camera * camera;
-	//IntroScene
-	IntroScene * introScene;
 	//Player
 	Player * player;
 	//Bat Enemy
@@ -79,6 +82,8 @@ private:
 	TextLabel * text;
 	//Background
 	Background * background;
+	//Menu Image
+	MenuImage * menuImage;
 	//GameObject
 	GameObject * gameObject;
 
@@ -89,6 +94,18 @@ private:
 	GameManager();
 	~GameManager();
 	int lifeReset = 1;
+
+	//Scenes
+	//Intro Scene
+	IntroScene * introScene;
+	//Bat Scene
+	BatScene * batScene;
+	//Rat Scene
+	RatScene * ratScene;
+	//Zombie Scene
+	ZombieScene * zombieScene;
+	//final Scene
+	FinalScene * finalScene;
 
 
 
