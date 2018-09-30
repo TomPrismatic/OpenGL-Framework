@@ -17,7 +17,7 @@ void Rat::Movement()
 
 void Rat::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime, true, 1);
+	GameObject::update(deltaTime, true, 1, false);
 	sound.update();
 	frameIndex = deltaTime;
 	Movement();
@@ -25,7 +25,7 @@ void Rat::update(float deltaTime, GLuint program)
 
 void Rat::initialise()
 {
-	objectDiameter *= 2.5;
+	objectDiameter *= 2;
 	transform.objPosition.x = -100;
 	transform.setRotationAngleZ(270);
 	updateSprite();

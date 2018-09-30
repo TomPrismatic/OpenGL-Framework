@@ -17,7 +17,7 @@ void BatKnight::Movement()
 
 void BatKnight::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime, true, 1);
+	GameObject::update(deltaTime, true, 1, false);
 	sound.update();
 	frameIndex = deltaTime;
 	Movement();

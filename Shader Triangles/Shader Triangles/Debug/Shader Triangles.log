@@ -1,4 +1,7 @@
-﻿  IntroScene.cpp
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\introscene.cpp(27): warning C4305: '*=': truncation from 'double' to 'float'
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\introscene.cpp(50): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿  Main.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Shader Triangles.vcxproj -> C:\Users\OEM\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

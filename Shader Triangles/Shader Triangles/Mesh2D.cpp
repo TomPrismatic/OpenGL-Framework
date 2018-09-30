@@ -53,10 +53,19 @@ void Mesh2D::initialise(int spriteWidth, int spriteHeight, int texWidth, int tex
 
 }
 
-void Mesh2D::update(int frameIndex, int animationIndex)
+void Mesh2D::update(int frameIndex, int animationIndex, bool isInAction)
 {
 	if (animationIndex != 0)
 	{
+		if (isInAction)
+		{
+			int numPerRow = texWidthMesh / spriteWidthMesh;
+			if (textureX >= 0.85)
+			{
+				setIsAnimationComplete(true);
+				return;
+			}
+		}
 
 		if (animationIndex == 1)
 		{
@@ -64,6 +73,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 4 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 2)
 		{
@@ -71,6 +81,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 1 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 3)
 		{
@@ -78,6 +89,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 2 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 4)
 		{
@@ -85,6 +97,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 3 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 5)
 		{
@@ -92,6 +105,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 5 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 6)
 		{
@@ -99,6 +113,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 6 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 7)
 		{
@@ -106,6 +121,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 7 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 8)
 		{
@@ -113,6 +129,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 8 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 9)
 		{
@@ -120,6 +137,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 9 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 10)
 		{
@@ -127,6 +145,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 10 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 11)
 		{
@@ -134,6 +153,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 11 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 12)
 		{
@@ -141,6 +161,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 12 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		if (animationIndex == 13)
 		{
@@ -148,6 +169,7 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 			int numPerRow = texWidthMesh / spriteWidthMesh;
 			textureX = (spriteIndex % numPerRow) * textureWidth;
 			textureY = 13 * textureHeight;
+			setIsAnimationComplete(false);
 		}
 		
 
@@ -199,6 +221,16 @@ void Mesh2D::update(int frameIndex, int animationIndex)
 const GLuint Mesh2D::getVAO()
 {
 	return VAO;
+}
+
+void Mesh2D::setIsAnimationComplete(bool isComplete)
+{
+	isAnimationComplete = isComplete;
+}
+
+bool Mesh2D::getIsAnimationComplete()
+{
+	return isAnimationComplete;
 }
 
 

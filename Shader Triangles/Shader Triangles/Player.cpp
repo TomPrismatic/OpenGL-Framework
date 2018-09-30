@@ -16,87 +16,103 @@ void Player::ProcessInput()
 {
 	if (Input::GetKeyDown('w') == DOWN)
 	{
-		transform.objPosition.y += 2.0f;
-		animationIndex = 1;
+		if (isAttacking == false)
+		{
+			transform.objPosition.y += 2.0f;
+			animationIndex = 1;
+		}
+		
 	}
 
 	if (Input::GetKeyDown('s') == DOWN)
 	{
-		transform.objPosition.y -= 2.0f;
-		animationIndex = 1;
+		if (isAttacking == false)
+		{
+			transform.objPosition.y -= 2.0f;
+			animationIndex = 1;
+		}
 	}
 
 	if (Input::GetKeyDown('d') == DOWN)
 	{
-		transform.objPosition.x += 2.0f;
-		transform.setRotationAngleZ(90);
-		transform.setRotationAngleY(180);
-		animationIndex = 1;
+		if (isAttacking == false)
+		{
+			transform.objPosition.x += 2.0f;
+			transform.setRotationAngleZ(90);
+			transform.setRotationAngleY(180);
+			animationIndex = 1;
+		}
 	}
 
 	if (Input::GetKeyDown('a') == DOWN)
 	{
-		transform.objPosition.x -= 2.0f;
-		transform.setRotationAngleZ(270);
-		transform.setRotationAngleY(0);
-		animationIndex = 1;
+		if (isAttacking == false)
+		{
+			transform.objPosition.x -= 2.0f;
+			transform.setRotationAngleZ(270);
+			transform.setRotationAngleY(0);
+			animationIndex = 1;
+		}
 	}
 
 	if (Input::GetKeyDown('h') == DOWN)
 	{
-		animationIndex = 2;
+		if (isAttacking == false)
+		{
+			animationIndex = 2;
+			isAttacking = true;
+			sound.playSound(1);
+		}
 	}
 
 	if (Input::GetKeyDown('j') == DOWN)
 	{
-		animationIndex = 3;
+		if (isAttacking == false)
+		{
+			animationIndex = 3;
+			isAttacking = true;
+			sound.playSound(2);
+		}
 	}
 
 	if (Input::GetKeyDown('k') == DOWN)
 	{
-		animationIndex = 4;
+		if (isAttacking == false)
+		{
+			animationIndex = 4;
+			isAttacking = true;
+			sound.playSound(3);
+		}
 	}
 
-	if (   Input::GetKeyDown('w') == UP && Input::GetKeyDown('a') == UP 
+	/*if (   Input::GetKeyDown('w') == UP && Input::GetKeyDown('a') == UP 
 		&& Input::GetKeyDown('s') == UP && Input::GetKeyDown('d') == UP
 		&& Input::GetKeyDown('h') == UP && Input::GetKeyDown('j') == UP 
 		&& Input::GetKeyDown('k') == UP)
 	{
 		animationIndex = 0;
-	}
-
-	Input::GetKeyDown('w') == UP;
-	Input::GetKeyDown('a') == UP;
-	Input::GetKeyDown('s') == UP;
-	Input::GetKeyDown('d') == UP;
-	Input::GetKeyDown('h') == UP;
-	Input::GetKeyDown('j') == UP;
-	Input::GetKeyDown('k') == UP;
+	}*/
 }
 
 void Player::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime, true, animationIndex);
+	GameObject::update(deltaTime, true, animationIndex, isAttacking);
 	sound.update();
 	frameIndex = deltaTime;
 	ProcessInput();
+	if (getIsCompleted())
+	{
+		isAttacking = false;
+		animationIndex = 1;
+	}
 }
 
 void Player::initialise()
 {
-	Input::GetKeyDown('w') == UP;
-	Input::GetKeyDown('a') == UP;
-	Input::GetKeyDown('s') == UP;
-	Input::GetKeyDown('d') == UP;
-	Input::GetKeyDown('h') == UP;
-	Input::GetKeyDown('j') == UP;
-	Input::GetKeyDown('k') == UP;
-
 	objectDiameter *= 4;
 	transform.setRotationAngleZ(270);
 	updateSprite();
 	updateSounds();
-	sound.initialise();
 	animationIndex = 0;
 
 	GameObject::initialise(93.75, 89, 750, 356, frameIndex, texture.getStringPath());
@@ -110,6 +126,14 @@ void Player::updateSprite()
 
 void Player::updateSounds()
 {
-	sound.setStringPath("Dependencies/TheMinesBackgroundMusic.mp3");
+	sound.setStringPath("Dependencies/TheMinesBackgroundMusic.mp3", 0);
+	sound.initialise();
+	sound.setStringPath("Dependencies/HeavySwing.wav", 1);
+	sound.setStringPath("Dependencies/MediumSwing.wav", 2);
+	sound.setStringPath("Dependencies/LightSwing.mp3", 3);
+	sound.createSoundEffect(1);
+	sound.createSoundEffect(2);
+	sound.createSoundEffect(3);
+
 }
 

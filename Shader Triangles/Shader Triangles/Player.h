@@ -36,5 +36,6 @@ public:
 
 private:
 	int frameIndex = 1;
+	bool isAttacking = false;
 };
 

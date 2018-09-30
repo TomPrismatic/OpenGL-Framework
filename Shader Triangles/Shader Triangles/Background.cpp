@@ -22,7 +22,7 @@ void Background::initialise()
 
 void Background::update(float deltaTime)
 {
-	GameObject::update(deltaTime, false, 0);
+	GameObject::update(deltaTime, false, 0, false);
 	int frameIndex = 1;
 }
 

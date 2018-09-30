@@ -24,7 +24,7 @@ void IntroScene::Movement()
 
 			if (animationIndex == 12)
 			{
-				objectDiameter *= 0.1;
+				//objectDiameter *= 0.1;
 			}
 
 			else
@@ -45,7 +45,7 @@ void IntroScene::Movement()
 
 void IntroScene::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime, true, animationIndex);
+	GameObject::update(deltaTime, true, animationIndex, false);
 	sound.update();
 	frameIndex = deltaTime;
 	Movement();

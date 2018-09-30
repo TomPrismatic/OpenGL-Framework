@@ -9,9 +9,13 @@ public:
 
 	void initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex);
 
-	void update(int frameIndex, int animationIndex);
+	void update(int frameIndex, int animationIndex, bool isInAction);
 
 	const GLuint getVAO();
+
+	void setIsAnimationComplete(bool isComplete);
+
+	bool getIsAnimationComplete();
 
 	// spriteTexCoords(int frameIndex, GLuint program);
 	
@@ -20,6 +24,8 @@ public:
 
 private:
 	GLuint VAO;
+
+	bool isAnimationComplete = false;
 
 	int spriteWidthMesh, spriteHeightMesh;
 	int texWidthMesh, texHeightMesh;
