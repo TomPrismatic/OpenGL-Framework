@@ -1,5 +1,4 @@
-
-// Library Includes
+#// Library Includes
 #include <chrono>
 
 // Local Includes
@@ -11,6 +10,8 @@
 
 // Static Function Prototypes
 
+Clock * Clock::instance = NULL;
+
 // Implementation
 //****************************************************
 // CClock: CClock Class Constructor
@@ -19,9 +20,9 @@
 //
 // @return: none
 //*****************************************************
-CClock::CClock()
-	: m_fTimeElapsed(0.0f)
-	, m_fDeltaTime(0.0f)
+Clock::Clock()
+	: timeElapsed(0.0f)
+	, deltaTime(0.0f)
 {
 
 }
@@ -33,9 +34,18 @@ CClock::CClock()
 //
 // @return: none
 //*****************************************************
-CClock::~CClock()
+Clock::~Clock()
 {
 
+}
+
+Clock * Clock::GetInstance()
+{
+	if (instance == NULL)
+	{
+		instance = new Clock();
+	}
+	return instance;
 }
 
 //****************************************************
@@ -45,9 +55,9 @@ CClock::~CClock()
 //
 // @return: true if initialisation is successful, false if not
 //*****************************************************
-bool CClock::Initialise()
+bool Clock::Initialise()
 {
-	m_fCurrentTime = std::chrono::high_resolution_clock::now();
+	currentTime = std::chrono::high_resolution_clock::now();
 	return (true);
 }
 
@@ -58,17 +68,16 @@ bool CClock::Initialise()
 //
 // @return: void
 //*****************************************************
-void
-CClock::Process()
+void Clock::Update()
 {
-	m_fLastTime = m_fCurrentTime;
+	lastTime = currentTime;
 
-	m_fCurrentTime = std::chrono::high_resolution_clock::now();
+	currentTime = std::chrono::high_resolution_clock::now();
 
 
-	m_fDeltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(m_fCurrentTime - m_fLastTime).count();
+	deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastTime).count();
 
-	m_fTimeElapsed += m_fDeltaTime;
+	timeElapsed += deltaTime;
 }
 
 //****************************************************
@@ -78,7 +87,7 @@ CClock::Process()
 //
 // @return: the current delta tick value
 //*****************************************************
-float CClock::GetDeltaTick()
+float Clock::GetDeltaTick()
 {
-	return (m_fDeltaTime);
+	return (deltaTime) / 100;
 }

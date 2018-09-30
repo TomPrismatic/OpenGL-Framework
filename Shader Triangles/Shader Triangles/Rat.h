@@ -36,6 +36,7 @@ public:
 	void updateSounds();
 
 private:
+	int previousDirection = 0;
 	int frameIndex = 1;
 };
 

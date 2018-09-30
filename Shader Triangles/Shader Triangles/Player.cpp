@@ -37,7 +37,12 @@ void Player::ProcessInput(std::vector <GameObject*> vectorOfGameObjects)
 				}
 				else
 				{
-					transform.objPosition.y += 2.0f;
+					movementCheck++;
+					if (movementCheck == 3)
+					{
+						transform.objPosition.y += 2.0f;
+						movementCheck = 0;
+					}
 				}
 				
 			}
@@ -66,7 +71,12 @@ void Player::ProcessInput(std::vector <GameObject*> vectorOfGameObjects)
 				}
 				else
 				{
-					transform.objPosition.y -= 2.0f;
+					movementCheck++;
+					if (movementCheck == 3)
+					{
+						transform.objPosition.y -= 2.0f;
+						movementCheck = 0;
+					}
 				}
 			}
 			animationIndex = 1;
@@ -93,7 +103,13 @@ void Player::ProcessInput(std::vector <GameObject*> vectorOfGameObjects)
 				}
 				else
 				{
-					transform.objPosition.x += 2.0f;
+					movementCheck++;
+					if (movementCheck == 3)
+					{
+						movementCheck++;
+						transform.objPosition.x += 2.0f;
+						movementCheck = 0;
+					}
 				}
 			}
 			transform.setRotationAngleZ(90);
@@ -122,7 +138,12 @@ void Player::ProcessInput(std::vector <GameObject*> vectorOfGameObjects)
 				}
 				else
 				{
-					transform.objPosition.x -= 2.0f;
+					movementCheck++;
+					if (movementCheck == 3)
+					{
+						transform.objPosition.x -= 2.0f;
+						movementCheck = 0;
+					}
 				}
 			}
 			transform.setRotationAngleZ(270);
@@ -192,10 +213,10 @@ void Player::render(GLuint program)
 
 void Player::update(float deltaTime, GLuint program, std::vector <GameObject*> vectorOfGameObjects)
 {
-	GameObject::update(deltaTime, true, animationIndex, isAttacking);
+	GameObject::update(deltaTime, true, animationIndex, isAttacking, frameIndex);
 	collider->update();
 	sound.update();
-	frameIndex = deltaTime;
+	frameIndex++;
 	ProcessInput(vectorOfGameObjects);
 	if (getIsCompleted())
 	{

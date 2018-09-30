@@ -37,5 +37,6 @@ public:
 
 private:
 	int frameIndex = 1;
+	int previousDirection = 0;
 };
 

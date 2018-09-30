@@ -1,3 +1,4 @@
+
 #pragma once
 
 #ifndef _CLOCK_H_
@@ -14,36 +15,41 @@
 // Constants
 
 // Prototypes
-class CClock
+class Clock
 {
 	// Member Functions
 public:
-	CClock();
-	~CClock();
+	static Clock * GetInstance();
+
 	bool Initialise();
-	void Process();
+	void Update();
 	float GetDeltaTick();
 
 protected:
 
 private:
-	CClock(const CClock& _kr);
-	CClock& operator= (const CClock& _kr);
+	Clock();
+	~Clock();
+	Clock(const Clock& _kr);
+	Clock& operator= (const Clock& _kr);
+
+	static Clock * instance;
 
 	// Member Variables
 public:
 
 protected:
-	double m_fTimeElapsed;
-	double m_fDeltaTime;
-	std::chrono::high_resolution_clock::time_point m_fLastTime;
-	std::chrono::high_resolution_clock::time_point m_fCurrentTime;
+	double timeElapsed;
+	double deltaTime;
+	std::chrono::high_resolution_clock::time_point lastTime;
+	std::chrono::high_resolution_clock::time_point currentTime;
 
-	std::vector<double> m_vecTimeHistory;
+	std::vector<double> timeHistory;
 
-	long long m_llNumCounts;
+	long long numberOfCounts;
 
 private:
 
 };
 #endif // 
+

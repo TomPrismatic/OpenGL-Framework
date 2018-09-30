@@ -38,7 +38,7 @@ struct Transform
 		static float getDistanceBetweenObjects(glm::vec3 objPosition1, glm::vec3 objPosition2)
 		{
 			//Pythagoras too find the distance between the two objects
-			float distance = sqrt(pow((objPosition1.x + objPosition2.x), 2) + pow((objPosition1.y - objPosition2.y), 2));
+			float distance = sqrt(pow((objPosition1.x - objPosition2.x), 2) + pow((objPosition1.y - objPosition2.y), 2));
 			return distance;
 		}
 

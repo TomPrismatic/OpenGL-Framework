@@ -31,7 +31,7 @@ public:
 
 	virtual void initialise(int spriteWidth, int spriteHeight, int texWidth, int texHeight, int frameIndex, std::string);
 	virtual void render(GLuint program);
-	virtual void update(float deltaTime, bool isSpriteSheet, int animationIndex, bool isInAction);
+	virtual void update(float deltaTime, bool isSpriteSheet, int animationIndex, bool isInAction, float frameIndex);
 
 	virtual bool getIsCompleted();
 	
@@ -52,6 +52,7 @@ public:
 
 protected:
 
+	int frameIndex = 0;
 	float objectDiameter;
 	int animationIndex = 0;
 	RadiusCollision* collider = nullptr;

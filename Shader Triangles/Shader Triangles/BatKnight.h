@@ -23,7 +23,7 @@ public:
 	BatKnight();
 	virtual ~BatKnight();
 
-	void Movement();
+	void Movement(float deltaTime);
 
 	virtual void render(GLuint program);
 
@@ -37,5 +37,7 @@ public:
 
 private:
 	int frameIndex = 1;
+	int previousDirection = 0;
+	GLfloat currentTime;
 };
 

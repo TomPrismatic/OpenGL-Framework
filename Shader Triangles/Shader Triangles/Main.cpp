@@ -81,7 +81,7 @@ void render()
 	batKnight->render(program);
 	zombie->render(program);
 	rat->render(program);
-	//introScene->render(program);
+	introScene->render(program);
 	text->render();
 	gameMenu->render(program);
 
@@ -95,6 +95,7 @@ void init()
 	//ShaderLoader shaderLoader; 
 	program = ShaderLoader::getInstance()->CreateProgram("VertexShader.vs", "FragmentShader.fs");
 
+	Clock::GetInstance()->Initialise();
 	gameMenu->initialise();
 	player->initialise();
 	batKnight->initialise();
@@ -112,8 +113,9 @@ void init()
 
 void Update()
 {
-	Clock::GetDeltaTime();
-	camera->Update(1.0f);
+	Clock::GetInstance()->Update();
+	deltaTime = Clock::GetInstance()->GetDeltaTick();
+	camera->Update(deltaTime);
 
 	player->update(deltaTime, program, vectorOfGameObjects);
 	batKnight->update(deltaTime, program);
@@ -121,7 +123,7 @@ void Update()
 	rat->update(deltaTime, program);
 	introScene->update(deltaTime, program);
 
-	background->update(1.0f);
+	background->update(deltaTime);
 	updatePVM(player);
 	glutPostRedisplay();
 }

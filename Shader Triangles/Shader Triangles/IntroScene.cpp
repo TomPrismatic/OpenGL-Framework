@@ -53,9 +53,9 @@ void IntroScene::render(GLuint program)
 
 void IntroScene::update(float deltaTime, GLuint program)
 {
-	GameObject::update(deltaTime, true, animationIndex, false);
+	GameObject::update(deltaTime, true, animationIndex, false, frameIndex);
 	sound.update();
-	frameIndex = deltaTime;
+	frameIndex++;
 	Movement();
 }
 
