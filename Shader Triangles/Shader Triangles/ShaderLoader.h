@@ -7,17 +7,19 @@
 
 class ShaderLoader
 {
-	private:
+private:
+	ShaderLoader(void);
+	~ShaderLoader(void);
+	ShaderLoader(const ShaderLoader& copy) {};
+	ShaderLoader& operator=(const ShaderLoader& move) {};
 
-		std::string ReadShader(const char *filename);
-		GLuint CreateShader(GLenum shaderType,
-			std::string source,
-			const char* shaderName);
+	static ShaderLoader * instance;
 
-	public:
-		ShaderLoader(void);
-		~ShaderLoader(void);
-		GLuint CreateProgram(const char* VertexShaderFilename,
-			const char* FragmentShaderFilename);
+	std::string ReadShader(const char *filename);
+	GLuint CreateShader(GLenum shaderType, std::string source, const char* shaderName);
+
+public:
+	GLuint CreateProgram(const char* VertexShaderFilename, const char* FragmentShaderFilename);
+	static ShaderLoader* getInstance();
 
 };

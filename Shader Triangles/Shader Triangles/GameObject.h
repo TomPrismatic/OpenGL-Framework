@@ -13,12 +13,15 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 #include "Sound.h"
+#include "Collision.h"
+#include "RadiusCollision.h"
 #include <iostream>
 
 class GameObject
 {
 	Mesh2D* mesh2D = nullptr;
 	Texture* textureObject = nullptr;
+	
 	glm::mat4 modelMatrix;
 	glm::mat4 pvmMatrix;
 
@@ -38,11 +41,20 @@ public:
 	glm::mat4 getModelMatrix();
 	glm::mat4 getPVMMatrix();
 
+	float getObjectDiameter();
+
+	void setIsVisible(bool visible);
+	bool getIsVisible();
+
+	RadiusCollision* getCollider();
+
 	Transform transform;
 
 protected:
 
 	float objectDiameter;
 	int animationIndex = 0;
+	RadiusCollision* collider = nullptr;
+	bool isVisible = true;
 };
 

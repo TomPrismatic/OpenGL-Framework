@@ -1,5 +1,7 @@
 #include "Player.h"
 #include "Input.h"
+#include "Collision.h"
+#include "RadiusCollision.h"
 
 
 Player::Player()
@@ -12,13 +14,33 @@ Player::~Player()
 }
 
 
-void Player::ProcessInput()
+void Player::ProcessInput(std::vector <GameObject*> vectorOfGameObjects)
 {
+	int movementCheck = 0;
 	if (Input::GetKeyDown('w') == DOWN)
 	{
 		if (isAttacking == false)
 		{
-			transform.objPosition.y += 2.0f;
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				if ((vectorOfGameObjects.at(i)->getIsVisible()))
+				{
+					if (!(collider->isColliding(vectorOfGameObjects.at(i)->getCollider())))
+					{
+						movementCheck++;
+						if (movementCheck == 3)
+						{
+							transform.objPosition.y += 2.0f;
+							movementCheck = 0;
+						}
+					}
+				}
+				else
+				{
+					transform.objPosition.y += 2.0f;
+				}
+				
+			}
 			animationIndex = 1;
 		}
 		
@@ -28,7 +50,25 @@ void Player::ProcessInput()
 	{
 		if (isAttacking == false)
 		{
-			transform.objPosition.y -= 2.0f;
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				if ((vectorOfGameObjects.at(i)->getIsVisible()))
+				{
+					if (!(collider->isColliding(vectorOfGameObjects.at(i)->getCollider())))
+					{
+						movementCheck++;
+						if (movementCheck == 3)
+						{
+							transform.objPosition.y -= 2.0f;
+							movementCheck = 0;
+						}
+					}
+				}
+				else
+				{
+					transform.objPosition.y -= 2.0f;
+				}
+			}
 			animationIndex = 1;
 		}
 	}
@@ -37,10 +77,28 @@ void Player::ProcessInput()
 	{
 		if (isAttacking == false)
 		{
-			transform.objPosition.x += 2.0f;
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				if ((vectorOfGameObjects.at(i)->getIsVisible()))
+				{
+					if (!(collider->isColliding(vectorOfGameObjects.at(i)->getCollider())))
+					{
+						movementCheck++;
+						if (movementCheck == 3)
+						{
+							transform.objPosition.x += 2.0f;
+							movementCheck = 0;
+						}
+					}
+				}
+				else
+				{
+					transform.objPosition.x += 2.0f;
+				}
+			}
 			transform.setRotationAngleZ(90);
 			transform.setRotationAngleY(180);
-			animationIndex = 1;
+			animationIndex = 1; 
 		}
 	}
 
@@ -48,7 +106,25 @@ void Player::ProcessInput()
 	{
 		if (isAttacking == false)
 		{
-			transform.objPosition.x -= 2.0f;
+			for (unsigned int i = 0; i < 3; i++)
+			{
+				if ((vectorOfGameObjects.at(i)->getIsVisible()))
+				{
+					if (!(collider->isColliding(vectorOfGameObjects.at(i)->getCollider())))
+					{
+						movementCheck++;
+						if (movementCheck == 3)
+						{
+							transform.objPosition.x -= 2.0f;
+							movementCheck = 0;
+						}
+					}
+				}
+				else
+				{
+					transform.objPosition.x -= 2.0f;
+				}
+			}
 			transform.setRotationAngleZ(270);
 			transform.setRotationAngleY(0);
 			animationIndex = 1;
@@ -62,6 +138,10 @@ void Player::ProcessInput()
 			animationIndex = 2;
 			isAttacking = true;
 			sound.playSound(1);
+			if (collider->isColliding(vectorOfGameObjects.at(0)->getCollider()))
+			{
+				vectorOfGameObjects.at(0)->setIsVisible(false);
+			}
 		}
 	}
 
@@ -72,6 +152,10 @@ void Player::ProcessInput()
 			animationIndex = 3;
 			isAttacking = true;
 			sound.playSound(2);
+			if (collider->isColliding(vectorOfGameObjects.at(1)->getCollider()))
+			{
+				vectorOfGameObjects.at(1)->setIsVisible(false);
+			}
 		}
 	}
 
@@ -82,6 +166,10 @@ void Player::ProcessInput()
 			animationIndex = 4;
 			isAttacking = true;
 			sound.playSound(3);
+			if (collider->isColliding(vectorOfGameObjects.at(2)->getCollider()))
+			{
+				vectorOfGameObjects.at(2)->setIsVisible(false);
+			}
 		}
 	}
 
@@ -94,12 +182,21 @@ void Player::ProcessInput()
 	}*/
 }
 
-void Player::update(float deltaTime, GLuint program)
+void Player::render(GLuint program)
+{
+	if (isVisible)
+	{
+		GameObject::render(program);
+	}
+}
+
+void Player::update(float deltaTime, GLuint program, std::vector <GameObject*> vectorOfGameObjects)
 {
 	GameObject::update(deltaTime, true, animationIndex, isAttacking);
+	collider->update();
 	sound.update();
 	frameIndex = deltaTime;
-	ProcessInput();
+	ProcessInput(vectorOfGameObjects);
 	if (getIsCompleted())
 	{
 		isAttacking = false;
@@ -109,6 +206,7 @@ void Player::update(float deltaTime, GLuint program)
 
 void Player::initialise()
 {
+	collider->initialise();
 	objectDiameter *= 4;
 	transform.setRotationAngleZ(270);
 	updateSprite();

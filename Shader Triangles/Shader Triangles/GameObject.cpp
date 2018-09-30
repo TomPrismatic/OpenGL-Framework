@@ -7,6 +7,7 @@ GameObject::GameObject()
 	mesh2D = new Mesh2D();
 	textureObject = new Texture();
 	objectDiameter = 50.0f;
+	collider = new RadiusCollision(this);
 }
 
 
@@ -21,9 +22,6 @@ void GameObject::initialise(int spriteWidth, int spriteHeight, int texWidth, int
 	textureObject->initialise();
 
 	transform.objScale *= objectDiameter;
-	
-
-
 }
 
 void GameObject::render(GLuint program)
@@ -85,4 +83,24 @@ glm::mat4 GameObject::getModelMatrix()
 glm::mat4 GameObject::getPVMMatrix()
 {
 	return pvmMatrix;
+}
+
+float GameObject::getObjectDiameter()
+{
+	return objectDiameter;
+}
+
+void GameObject::setIsVisible(bool visible)
+{
+	isVisible = visible;
+}
+
+bool GameObject::getIsVisible()
+{
+	return isVisible;
+}
+
+RadiusCollision* GameObject::getCollider()
+{
+	return collider;
 }

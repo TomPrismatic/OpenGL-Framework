@@ -10,15 +10,22 @@
 #include "Rat.h"
 #include "IntroScene.h"
 #include "GameObject.h"
+#include "GameMenu.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 #include "Clock.h"
+#include "TextLabel.h"
+#include <vector>
 #include "Background.h"
 #include <iostream>
 
 //Clock
 
+//Vector of Game Objects
+std::vector <GameObject*> vectorOfGameObjects;
+//Game Menu
+GameMenu * gameMenu = new GameMenu("Start Quest", "Bitch it");
 
 //Global Variables
 GLuint program;
@@ -41,13 +48,16 @@ Zombie * zombie = new Zombie();
 //Rat Enemy
 Rat * rat = new Rat();
 
+//Text Label
+TextLabel * text = new TextLabel("Enimies Remaining:", "Dependencies/Fonts/SnackerComic.ttf", glm::vec2(-390.0f, 350.0f));
+
 //Background
 Background * background = new Background();
 
 //GameObject
 GameObject * gameObject = new GameObject();
 
-int deltaTime = 0;
+float deltaTime = 0.0f;
 
 
 void updatePVM(GameObject * gameObject)
@@ -60,19 +70,20 @@ void updatePVM(GameObject * gameObject)
 	background->calculatePVMMatrix(camera->GetPV());
 }
 
-
-
 void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(1.0, 0.0, 0.0, 1.0); //clear red
 
+	
 	background->render(program);
 	player->render(program);
 	batKnight->render(program);
 	zombie->render(program);
 	rat->render(program);
-	introScene->render(program);
+	//introScene->render(program);
+	text->render();
+	gameMenu->render(program);
 
 	glUseProgram(0); //Unbind Program
 	
@@ -81,14 +92,19 @@ void render()
 
 void init() 
 {
-	ShaderLoader shaderLoader; 
-	program = shaderLoader.CreateProgram("VertexShader.vs", "FragmentShader.fs");
+	//ShaderLoader shaderLoader; 
+	program = ShaderLoader::getInstance()->CreateProgram("VertexShader.vs", "FragmentShader.fs");
 
+	gameMenu->initialise();
 	player->initialise();
 	batKnight->initialise();
+	vectorOfGameObjects.push_back(batKnight);
 	zombie->initialise();
+	vectorOfGameObjects.push_back(zombie);
 	rat->initialise();
+	vectorOfGameObjects.push_back(rat);
 	introScene->initialise();
+	text->initialise();
 
 	background->initialise();
 	camera->Initialise();
@@ -96,10 +112,10 @@ void init()
 
 void Update()
 {
-	deltaTime++;
+	Clock::GetDeltaTime();
 	camera->Update(1.0f);
 
-	player->update(deltaTime, program);
+	player->update(deltaTime, program, vectorOfGameObjects);
 	batKnight->update(deltaTime, program);
 	zombie->update(deltaTime, program);
 	rat->update(deltaTime, program);
@@ -128,7 +144,9 @@ int main(int argc, char **argv) {
 
 	glutKeyboardFunc(Input::KeyboardDown);
 	glutKeyboardUpFunc(Input::KeyboardUp);
-
+	glutMouseFunc(Input::mouseClick);
+	glutMotionFunc(Input::mouseMove);
+	glutPassiveMotionFunc(Input::mousePassiveMove);
 	glutMainLoop();
 
 	return 0;

@@ -25,6 +25,8 @@ public:
 
 	void Movement();
 
+	virtual void render(GLuint program);
+
 	virtual void update(float deltaTime, GLuint program);
 
 	virtual void initialise();

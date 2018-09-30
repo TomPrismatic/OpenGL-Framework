@@ -1,7 +1,26 @@
-﻿  Main.cpp
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(104): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(105): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(106): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Background.cpp
+  BatKnight.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\batknight.cpp(31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\batknight.cpp(46): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  GameMenu.cpp
+  GameObject.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\gameobject.cpp(51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  IntroScene.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\introscene.cpp(58): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Main.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(117): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(118): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(119): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\main.cpp(121): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Player.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(198): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\player.cpp(216): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  RadiusCollision.cpp
+  Rat.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\rat.cpp(31): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  TextLabel.cpp
+  Zombie.cpp
+c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\zombie.cpp(23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Shader Triangles.vcxproj -> C:\Users\OEM\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

@@ -6,7 +6,7 @@
 ShaderLoader::ShaderLoader(void){}
 ShaderLoader::~ShaderLoader(void){}
 
-
+ShaderLoader * ShaderLoader::instance = NULL;
 
 std::string ShaderLoader::ReadShader(const char *filename)
 {
@@ -85,4 +85,13 @@ GLuint ShaderLoader::CreateProgram(const char* vertexShaderFilename,
 		return 0;
 	}
 	return program;
+}
+
+ShaderLoader * ShaderLoader::getInstance()
+{
+	if (instance == NULL)
+	{
+		instance = new ShaderLoader();
+	}
+	return instance;
 }

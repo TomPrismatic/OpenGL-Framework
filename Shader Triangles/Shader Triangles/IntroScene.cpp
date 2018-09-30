@@ -24,7 +24,7 @@ void IntroScene::Movement()
 
 			if (animationIndex == 12)
 			{
-				//objectDiameter *= 0.1;
+				isVisible = false;
 			}
 
 			else
@@ -40,6 +40,14 @@ void IntroScene::Movement()
 	if (Input::GetKeyDown('p') == UP)
 	{
 		hasBeenReleased = true;
+	}
+}
+
+void IntroScene::render(GLuint program)
+{
+	if (isVisible)
+	{
+		GameObject::render(program);
 	}
 }
 

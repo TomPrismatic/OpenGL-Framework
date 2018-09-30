@@ -13,7 +13,10 @@
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
 #include "GameObject.h"
+#include "Collision.h"
+#include "RadiusCollision.h"
 #include <iostream>
+#include <vector>
 
 class Player:public GameObject
 {
@@ -24,9 +27,11 @@ public:
 	Player();
 	virtual ~Player();
 
-	void ProcessInput();
+	void ProcessInput(std::vector <GameObject*> vectorOfGameObjects);
 
-	virtual void update(float deltaTime, GLuint program);
+	virtual void render(GLuint render);
+
+	virtual void update(float deltaTime, GLuint program, std::vector <GameObject*> vectorOfGameObjects);
 
 	virtual void initialise();
 
