@@ -20,6 +20,11 @@ void RadiusCollision::update()
 	centrePosition = gameObject->transform.objPosition;
 }
 
+void RadiusCollision::setRadius(float length)
+{
+	radius = length;
+}
+
 float RadiusCollision::getRadius() const
 {
 	return radius;

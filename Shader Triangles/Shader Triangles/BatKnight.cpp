@@ -41,8 +41,8 @@ void BatKnight::initialise()
 	objectDiameter *= 2.5;
 
 	transform.setRotationAngleZ(270);
-	transform.objPosition.x = -200;
-	transform.objPosition.y = +200;
+	//transform.objPosition.x = -200;
+	//transform.objPosition.y = +200;
 	updateSprite();
 	collider->initialise();
 	//updateSounds();

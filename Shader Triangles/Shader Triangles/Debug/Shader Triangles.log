@@ -1,5 +1,2 @@
-﻿  BatKnight.cpp
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\batknight.cpp(16): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\batknight.cpp(32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\github\opengl-framework\shader triangles\shader triangles\batknight.cpp(51): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  GameManager.cpp
   Shader Triangles.vcxproj -> C:\Users\OEM\Documents\GitHub\OpenGL-Framework\Shader Triangles\Debug\Shader Triangles.exe

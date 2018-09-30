@@ -13,7 +13,7 @@
 #include "ShaderLoader.h"
 #include "GameObject.h"
 
-// class BoxCollider;
+class RadiusCollision;
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 800;
@@ -27,7 +27,7 @@ struct FontChar
 };
 
 
-class TextLabel
+class TextLabel: public GameObject
 {
 public:
 	TextLabel(
@@ -51,12 +51,15 @@ public:
 
 	void calculateDimensions();
 
-	//BoxCollider * GetCollider() const;
+	RadiusCollision * GetCollider() const;
 
 	GLfloat getTextWidth() const;
 	GLfloat getTextHeight() const;
 
 private:
+
+	//collision
+	RadiusCollision * collider = NULL;
 
 	GLuint generateTexture(FT_Face face);
 
@@ -73,8 +76,6 @@ private:
 	glm::mat4 projectionMatrix;
 	std::map<GLchar, FontChar> characters;
 
-	// COLLISION
-	// BoxCollider * collider = NULL;
 	
 };
 

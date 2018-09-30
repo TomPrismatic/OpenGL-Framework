@@ -1,8 +1,8 @@
 #include "GameMenu.h"
 #include "TextLabel.h"
 #include "Input.h"
-//#include "GameManager.h"
-//#include "BoxCollider.h"
+#include "GameManager.h"
+#include "RadiusCollision.h"
 #include "Dependencies\glm\glm.hpp"
 #include "Dependencies\glm\gtc\matrix_transform.hpp"
 #include "Dependencies\glm\gtc\type_ptr.hpp"
@@ -50,10 +50,17 @@ void GameMenu::update(float deltaTime)
 	glm::vec2 mousePosition = Input::getPositionVector();
 	glm::vec3 mouseTransformedPosition = glm::vec3(mousePosition.x, mousePosition.y, 0.0f);
 
-
-	// If the location of the mouse collide with Start --> change to Game Mode
-	//if (startButton->GetCollider()->IsColliding(mouseTransformedPosition))
-	//{
+	if (Input::GetKeyDown('s') == DOWN)
+	{
+		firstClicked = true;
+	}
+	if (Input::GetKeyDown('q') == DOWN)
+	{
+		secondClicked = true;
+	}
+	/*// If the location of the mouse collide with Start --> change to Game Mode
+	if (startButton->GetCollider()->isColliding(mouseTransformedPosition, startButton->GetCollider()))
+	{
 		// If Mouse clicked
 		if (Input::GetMouseState(MOUSE_LEFT) == DOWN)
 		{
@@ -63,15 +70,15 @@ void GameMenu::update(float deltaTime)
 	
 
 	// If the location of the mouse collide with Quit --> Quit Game
-	//if (quitButton->GetCollider()->IsColliding(mouseTransformedPosition))
-	//{
+	if (quitButton->GetCollider()->isColliding(mouseTransformedPosition))
+	{
 		// If mouse clicked
 		if (Input::GetMouseState(MOUSE_LEFT) == DOWN)
 		{
 			// Quit game
 			secondClicked = true;
 		}
-	//}
+	}*/
 }
 
 bool GameMenu::getFirstClicked() const

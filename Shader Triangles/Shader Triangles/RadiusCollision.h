@@ -17,6 +17,8 @@ public:
 
 	void update();
 
+	void setRadius(float length);
+
 	float getRadius() const;
 
 	bool isColliding(RadiusCollision * collider);

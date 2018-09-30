@@ -1,5 +1,5 @@
 #include "TextLabel.h"
-// #include "BoxCollider.h"
+#include "RadiusCollision.h"
 
 
 
@@ -16,8 +16,7 @@ TextLabel::TextLabel(std::string text, std::string font, glm::vec2 screenPositio
 	textWidth = 0.0;
 	textHeight = 0.0;
 
-	// collider = new BoxCollider(this);
-
+	collider = new RadiusCollision(this);
 }
 
 void TextLabel::initialise()
@@ -163,17 +162,16 @@ void TextLabel::calculateDimensions()
 		textHeight = height;
 	}
 
-	//transform.objPosition.x = screenPosition.x + textWidth / 2;
-	//transform.objPosition.y = screenPosition.y;
-	/*collider->Initialise();
-	collider->SetWidth(textWidth);
-	collider->SetHeight(textHeight);*/
+	transform.objPosition.x = screenPosition.x + textWidth / 2;
+	transform.objPosition.y = screenPosition.y;
+	collider->initialise();
+	collider->setRadius(textWidth);
 }
 
-//BoxCollider * TextLabel::GetCollider() const
-//{
-//	return collider;
-//}
+RadiusCollision * TextLabel::GetCollider() const
+{
+	return collider;
+}
 
 GLfloat TextLabel::getTextWidth() const
 {
